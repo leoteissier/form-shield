@@ -15,7 +15,7 @@
     "javascript",
     "library"
   ],
-  "author": "Votre Nom",
+  "author": "Teissier Léo",
   "license": "MIT",
   "devDependencies": {
     "mocha": "^10.1.0"
