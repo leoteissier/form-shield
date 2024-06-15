@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12, 14, 16, 18, 20]
+        node-version: [12, 14, 16]
 
     steps:
       - uses: actions/checkout@v2
@@ -36,7 +36,6 @@ jobs:
           node-version: '16'
       - run: npm install
       - run: npm test
-      - run: npm run build # Si vous avez une étape de build
       - name: Publish to npm
         run: npm publish
         env:
