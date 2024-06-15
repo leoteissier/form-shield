@@ -1,0 +1,23 @@
+{
+  "name": "form-shield",
+  "version": "1.0.0",
+  "description": "Une bibliothèque JavaScript simple.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leoteissier/form-shield.git"
+  },
+  "keywords": [
+    "javascript",
+    "library"
+  ],
+  "author": "Teissier Léo",
+  "license": "MIT",
+  "homepage": "https://github.com/leoteissier/form-shield#readme",
+  "devDependencies": {
+    "mocha": "10.1.0"
+  }
+}
