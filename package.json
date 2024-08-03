@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/leoteissier/form-shield.git"
+    "url": "git+https://github.com/leoteissier/form-shield.git"
   },
   "keywords": [
     "validation",
