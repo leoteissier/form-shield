@@ -93,8 +93,5 @@ Valide si une chaîne est un numéro de carte de crédit valide.
 ## Contribution
 Les contributions sont les bienvenues ! Veuillez soumettre un pull request pour toute amélioration ou correction de bug.
 
-## Tests
-Pour exécuter les tests, utilisez la commande suivante :
-
 ## Licence
 Cette bibliothèque est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
