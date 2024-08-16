@@ -1,12 +1,13 @@
 {
   "name": "form-shield",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple validation library for JavaScript.",
   "author": "Teissier Léo",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "mocha"
+    "build": "tsc",
+    "test": "mocha --require ts-node/register --project tsconfig.test.json 'test/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,10 @@
     "library"
   ],
   "devDependencies": {
-    "mocha": "^10.1.0"
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^22.3.0",
+    "mocha": "^10.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
   }
 }

@@ -1,4 +1,4 @@
-const {
+import { 
     validateEmail,
     validateInternationalEmail,
     validatePhoneNumber,
@@ -7,9 +7,9 @@ const {
     validateNumberRange,
     validateIPAddress,
     validateURL,
-    validateCreditCardNumber
-} = require('../src/index');
-const assert = require('assert');
+    validateCreditCardNumber 
+} from '../src/index';
+import * as assert from 'assert';
 
 describe('Validation Library', function() {
     describe('validateEmail', function() {
