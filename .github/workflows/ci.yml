@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Compile TypeScript
+        run: npm run build
+
       - name: Run tests
         run: npm test
 
@@ -42,10 +45,13 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '22'  # Utilisez une version spécifique de Node.js pour la publication
+          node-version: '22'
 
       - name: Install dependencies
         run: npm install
+
+      - name: Compile TypeScript
+        run: npm run build
 
       - name: Run tests
         run: npm test
