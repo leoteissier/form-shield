@@ -1,0 +1,42 @@
+stages:
+  - build
+  - publish
+
+variables:
+  NPM_TOKEN: $NPM_TOKEN
+  NODE_ENV: production
+
+before_script:
+  - echo "Using Node.js version $NODE_VERSION"
+
+build:
+  stage: build
+  image: node:$NODE_VERSION
+  services:
+    - docker:dind
+  script:
+    - npm install
+    - npm run build
+    - npm test
+  only:
+    - main
+  parallel:
+    matrix:
+      - NODE_VERSION: ["14", "16", "18", "20", "22"]
+
+# Job pour publier sur npm
+publish:
+  stage: publish
+  image: node:22
+  needs:
+    - build
+  script:
+    - npm install
+    - npm run build
+    - npm test
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+    - npm publish
+  only:
+    - main
+  dependencies:
+    - build
