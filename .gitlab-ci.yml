@@ -1,6 +1,6 @@
 stages:
   - build
-  - publish
+  - test
 
 variables:
   NPM_TOKEN: $NPM_TOKEN
@@ -9,33 +9,23 @@ variables:
 build:
   stage: build
   image: node:$NODE_VERSION
-  services:
-    - docker:dind
   script:
     - npm install -g typescript  # Installe TypeScript globalement
     - npm install  # Installe les dépendances
-    - export PATH=./node_modules/.bin:$PATH
     - npm run build  # Exécute la commande de compilation
-    - npm test  # Exécute les tests
   only:
     - main
   parallel:
     matrix:
       - NODE_VERSION: ["14", "16", "18", "20", "22"]
 
-
-publish:
-  stage: publish
-  image: node:22
-  needs:
-    - build
+test:
+  stage: test
+  image: node:$NODE_VERSION
   script:
-    - npm install  # Installe les dépendances avant de construire
-    - npm run build
-    - npm test
-    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-    - npm publish
+    - npm test  # Exécute les tests
   only:
     - main
-  dependencies:
-    - build
+  parallel:
+    matrix:
+      - NODE_VERSION: ["14", "16", "18", "20", "22"]
