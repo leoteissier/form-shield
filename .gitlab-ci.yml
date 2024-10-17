@@ -4,15 +4,14 @@ stages:
 
 variables:
   NPM_TOKEN: $NPM_TOKEN
-  NODE_ENV: production
 
 build:
   stage: build
   image: node:$NODE_VERSION
   script:
     - npm install -g typescript  # Installe TypeScript globalement
-    - npm install  # Installe les dépendances
-    - npm run build  # Exécute la commande de compilation
+    - npm install  # Installe toutes les dépendances (y compris devDependencies)
+    - npm run build  # Compile le projet
   only:
     - main
   parallel:
@@ -23,6 +22,7 @@ test:
   stage: test
   image: node:$NODE_VERSION
   script:
+    - npm install  # Installe toutes les dépendances (y compris devDependencies)
     - npm test  # Exécute les tests
   only:
     - main
