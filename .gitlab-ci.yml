@@ -1,45 +1,45 @@
-stages:
-  - build
-  - test
-  - publish
+# stages:
+#   - build
+#   - test
+#   - publish
 
-variables:
-  NPM_TOKEN: $NPM_TOKEN
+# variables:
+#   NPM_TOKEN: $NPM_TOKEN
 
-build:
-  stage: build
-  image: node:$NODE_VERSION
-  script:
-    - npm install -g typescript  # Installe TypeScript globalement
-    - npm install  # Installe toutes les dépendances (y compris devDependencies)
-    - npm run build  # Compile le projet
-  only:
-    - main
-  parallel:
-    matrix:
-      - NODE_VERSION: ["14", "16", "18", "20", "22"]
+# build:
+#   stage: build
+#   image: node:$NODE_VERSION
+#   script:
+#     - npm install -g typescript  # Installe TypeScript globalement
+#     - npm install  # Installe toutes les dépendances (y compris devDependencies)
+#     - npm run build  # Compile le projet
+#   only:
+#     - main
+#   parallel:
+#     matrix:
+#       - NODE_VERSION: ["14", "16", "18", "20", "22"]
 
-test:
-  stage: test
-  image: node:$NODE_VERSION
-  script:
-    - npm install  # Installe toutes les dépendances (y compris devDependencies)
-    - npm test  # Exécute les tests
-  only:
-    - main
-  parallel:
-    matrix:
-      - NODE_VERSION: ["14", "16", "18", "20", "22"]
+# test:
+#   stage: test
+#   image: node:$NODE_VERSION
+#   script:
+#     - npm install  # Installe toutes les dépendances (y compris devDependencies)
+#     - npm test  # Exécute les tests
+#   only:
+#     - main
+#   parallel:
+#     matrix:
+#       - NODE_VERSION: ["14", "16", "18", "20", "22"]
 
-publish:
-  stage: publish
-  image: node:16-alpine
-  script:
-    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc  # Configure npm avec le token
-    - npm install  # Installe les dépendances
-    - npm run build  # Recompile si nécessaire
-    - npm publish  # Publie le package sur npm
-  only:
-    - main
-  dependencies:
-    - build
+# publish:
+#   stage: publish
+#   image: node:16-alpine
+#   script:
+#     - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc  # Configure npm avec le token
+#     - npm install  # Installe les dépendances
+#     - npm run build  # Recompile si nécessaire
+#     - npm publish  # Publie le package sur npm
+#   only:
+#     - main
+#   dependencies:
+#     - build
